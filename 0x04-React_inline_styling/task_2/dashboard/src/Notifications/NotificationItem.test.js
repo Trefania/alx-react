@@ -2,13 +2,6 @@ import React from "react";
 import NotificationItem from "./NotificationItem";
 import { shallow } from "enzyme";
 
-beforeEach(() => {
-  StyleSheetTestUtils.suppressStyleInjection();
-});
-afterEach(() => {
-  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-});
-
 describe("rendering components", () => {
   it("renders NotificationItem component without crashing", () => {
     const wrapper = shallow(<NotificationItem />);
