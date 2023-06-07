@@ -12,5 +12,4 @@ describe("Testing BodySection Component",() => {
     expect(p).toEqual("test children node");
     expect(wrapper.containsAllMatchingElements([h, p])).toEqual(true);
   });
-  
 });
