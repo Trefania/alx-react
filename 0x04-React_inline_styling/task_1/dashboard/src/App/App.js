@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, css } from "aphrodite";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Login from "../Login/Login";
@@ -7,21 +6,9 @@ import CourseList from "../CourseList/CourseList";
 import Notifications from "../Notifications/Notifications";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import BodySection from "../BodySection/BodySection";
+import { StyleSheet, css } from "aphrodite";
 import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
-
-const styles = StyleSheet.create({
-  app: {
-    textAlign: "center",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  headingSection: {
-    marginBottom: "30px",
-  },
-});
 
 class App extends React.Component {
   constructor(props) {
@@ -44,11 +31,11 @@ class App extends React.Component {
 
   handleKeyPress(e) {
     if (e.ctrlKey && e.key === "h") {
+      e.preventDefault();
       alert("Logging you out");
       this.props.logOut();
     }
   }
-
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress);
   }
@@ -58,16 +45,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props;
-
     return (
       <React.Fragment>
-        <div className={css(styles.app)}>
-          <div className={css(styles.headingSection)}>
+        <div className={css(styles.App)}>
+          <div className="heading-section">
             <Notifications listNotifications={this.listNotifications} />
             <Header />
           </div>
-          {isLoggedIn ? (
+          {this.props.isLoggedIn ? (
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={this.listCourses} />
             </BodySectionWithMarginBottom>
@@ -89,9 +74,20 @@ class App extends React.Component {
   }
 }
 
+const styles = StyleSheet.create({
+  App: {
+    height: "100vh",
+    maxWidth: "100vw",
+    position: "relative",
+    fontFamily: "Arial, Helvetica, sans-serif",
+  },
+});
+
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => {},
+  logOut: () => {
+    return;
+  },
 };
 
 App.propTypes = {
