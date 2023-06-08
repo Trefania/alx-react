@@ -52,4 +52,7 @@
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "transform": {
-      "\\.js$": "<rootDir>/node_modul
+      "\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
+  }
+}
